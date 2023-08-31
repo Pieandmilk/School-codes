@@ -1,3 +1,5 @@
+//KYNNN LYZANDER V. ELEGADO
+
 #include <iostream>
 #include <string>
 #include <windows.h> 
@@ -13,7 +15,14 @@ void gotoxy(int x, int y) {
 }
 
 int main() {
-    string word = "CUTIE";
+	
+	
+    string word ;
+
+    
+    cout<<"Enter word: ";
+    cin>> word;
+    
     int wordLength = word.length();
 
     int boxWidth = wordLength + 2; // Adjusted box width
@@ -24,16 +33,23 @@ int main() {
     char bottomRight = 188; 
     char horizontal = 205;  
     char vertical = 186;   
+	
+	
+	int scrnWidth  = 120;
 
+	int centerX= (scrnWidth/2)-((word.length())/2);
+	
+	
+	
     // Print the top of the square
-    gotoxy(1, 1);
+    gotoxy(centerX, 13);
     cout << topLeft;
     for (int i = 0; i < boxWidth ; ++i)
         cout << horizontal;
     cout << topRight << endl;
 
     // Print the sides of the square
-    gotoxy(1, 2);
+    gotoxy(centerX, 14);
     cout << vertical;
     for (int j = 0; j < boxWidth ; ++j) {
         if (j == 1) {
@@ -46,7 +62,7 @@ int main() {
     cout << vertical << endl;
 
     // Print the bottom of the square
-    gotoxy(1, 3);
+    gotoxy(centerX, 15);
     cout << bottomLeft;
     for (int i = 0; i < boxWidth ; ++i)
         cout << horizontal;
