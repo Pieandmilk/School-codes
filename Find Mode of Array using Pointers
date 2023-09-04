@@ -1,0 +1,43 @@
+#include <iostream>
+#include <unordered_map>
+#include <vector>
+using namespace std;
+
+int findMode(int* arr, int length){
+    unordered_map<int, int> frequency;
+    int mode= arr[0];
+    int maxCount=1;
+
+    for (int i=0;i < length; i++){
+        if (frequency.find(arr[i])== frequency.end()){
+            frequency[arr[i]]=1;
+
+        }else{
+            frequency[arr[i]]++;
+
+        }
+        if (frequency[arr[i]]> maxCount){
+            maxCount= frequency[arr[i]];
+            mode=arr[i];
+        }
+    }
+    return mode;
+}
+
+int main(){
+
+    int length;
+    cout<<"Enter the length of the array: ";
+    cin>>length;
+
+    int* arr= new int[length];
+    cout<<"Enter the elements of the array:"<< endl;
+    for (int i = 0; i < length; i++){
+        cin>> arr[i];
+    }
+
+    int mode = findMode(arr,length);
+    cout << "The mode of the array is "<< mode<<endl;
+
+    delete[] arr;
+}
