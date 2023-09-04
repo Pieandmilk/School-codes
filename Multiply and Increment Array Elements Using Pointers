@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+int main(){
+    int arr[5];
+    int multiplier, increment;
+    cout<<"Enter 5 elements for the array: ";
+    for(int i=0; i<5;i++){
+        cin>>arr[i];
+    }
+
+    cout<< "Enter the multiplier: ";
+    cin>> multiplier;
+
+    cout<<"Enter the increment: ";
+    cin >> increment;
+    int *ptr=(arr);
+    for (int i=0;i<5;i++){
+        *ptr=(*ptr) * multiplier;
+        *ptr=(*ptr) + increment;
+        ptr++;
+    }
+
+    cout<<"Result of the operation: "<< endl;
+    cout<< "Array: ";
+    for (int i = 0; i<5;i++){
+        cout<<arr[i]<<" ";
+
+    }
+    cout<<endl;
+}
