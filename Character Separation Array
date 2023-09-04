@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+int main(){
+char character[8];
+
+cout<<"Enter 8 characters: "<<endl;
+for(int i =0; i<8;i++){
+cin>>character[i];
+
+    }
+cout<<"Array elements:"<<endl;
+
+for (int i =0; i<8;i++){
+    if (i<7)
+        cout<<character[i]<<"-";
+    else
+        cout<<character[i];
+}
+
+}
