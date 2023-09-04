@@ -1,0 +1,39 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+struct publisher{
+string title;
+string author;
+int year;
+string pubName;
+};
+
+int main(){
+    publisher book;
+
+    cout<<"Enter Book Title: ";
+    getline(cin,book.title);
+
+    cout<<"Enter Book Author: ";
+    getline(cin,book.author);
+
+    cout<<"Enter Publication Year: ";
+    cin>>book.year;
+    cin.ignore();
+
+    cout<<"Enter Publisher Name: ";
+    getline(cin,book.pubName);
+
+    cout<<"\nBook Details:"<<endl;
+
+    cout<<"Title: "<<book.title<<endl;
+
+    cout<<"Author: "<<book.author<<endl;
+
+    cout<<"Publication Year: "<<book.year<<endl;
+
+    cout<<"Publisher: "<<book.pubName;
+
+}
