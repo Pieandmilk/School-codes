@@ -1,0 +1,118 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <iomanip>
+#include <locale>
+using namespace std;
+
+struct Employee{
+string name;
+int ID;
+string position;
+int salary;
+int hoursWorked;
+};
+
+int main(){
+    cout.imbue(locale("C"));
+    vector<Employee> employees;
+    int choice;
+    while(true){
+        cout<<"1. Add employee"<<endl;
+        cout<<"2. Delete employee"<<endl;
+        cout<<"3. Search employee"<<endl;
+        cout<<"4. Display total payroll"<<endl;
+        cout<<"5. Exit"<<endl;
+        cout<<"Enter choice: ";
+        cin>>choice;
+        cin.ignore();
+
+        switch(choice){
+
+            case 1:{
+                Employee emp;
+                cout<<"\nEnter employee name: ";
+                getline(cin,emp.name);
+
+                cout << "Enter employee ID: ";
+                cin>>emp.ID;
+                cin.ignore();
+
+                cout<<"Enter employee position: ";
+                getline(cin,emp.position);
+
+                cout<<"Enter employee salary: ";
+                cin>>emp.salary;
+
+                cout<<"Enter employee hours worked: ";
+                cin>>emp.hoursWorked;
+
+                employees.push_back(emp);
+
+                cout<<"\nEmployee added\n"<< endl;
+                break;
+                
+            }
+            case 2:{
+                int deleteID;
+                cout<<"\nEnter employee ID to delete: ";
+                cin>>deleteID;
+                bool found= false;
+
+                for (auto it=employees.begin(); it != employees.end();++it){
+
+                    if (it->ID==deleteID){
+                        employees.erase(it);
+                        cout<<"\nEmployee deleted\n"<<endl;
+                        found=true;
+                        break;
+                    }
+                }
+                if(!found){
+                    cout<<"Employee not found!\n";
+                }
+                break;
+            }
+            case 3: {
+                int searchID;
+                cout<<"\nEnter employee ID to search: ";
+                cin>>searchID;
+                bool found = false;
+                for (const auto& emp: employees){
+                    if(emp.ID== searchID){
+                        cout<<"\nEmployee details:"<<endl;
+                        cout<<"Name: "<<emp.name<<endl;
+                        cout<<"ID: "<<emp.ID<<endl;
+                        cout<<"Position: "<<emp.position<<endl;
+                        cout<<"Salary: $"<<fixed<<setprecision(2)<<static_cast<float>(emp.salary)<<endl;
+                        cout<<"Hours worked: "<<emp.hoursWorked<<"\n\n";
+                        found= true;
+                        break;
+                    }
+                }
+                if(!found){
+                    cout<<"Employee not found!"<<endl;
+                }
+                break;
+            }
+            case 4:{
+                double totalPayroll=0;
+                for (const auto& emp : employees){
+                    double pay = emp.salary* emp.hoursWorked;
+                    totalPayroll+=pay;
+                    
+                }
+                cout<<"\nTotal payroll: $"<<fixed<<setprecision(2)<<static_cast<float>(totalPayroll)<<"\n\n";
+                break;
+            }
+            case 5:{
+                return 0;
+            }default:{
+                cout<<"Invalid choice!"<<endl;
+                break;
+            }
+        }
+    }
+
+
+}
