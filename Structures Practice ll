@@ -1,0 +1,21 @@
+#include <iostream>
+#include <math.h>
+#include <iomanip>
+using namespace std;
+// Use M_PI for PI
+struct Circle{
+double radius;
+};
+int main(void) {
+    Circle circle1;
+    cout<<"Enter radius: ";
+    cin>>circle1.radius;
+
+    double c= 2*M_PI*circle1.radius;
+    double a= M_PI*(circle1.radius*circle1.radius);
+
+    cout<<"Circumference: "<<setprecision(2)<<fixed<<c<<endl;
+    cout<<"Area: "<<setprecision(2)<<fixed<<a<<endl;
+
+    return 0;
+}
