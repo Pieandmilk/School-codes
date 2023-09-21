@@ -1,0 +1,33 @@
+#include <iostream>
+#define N 10
+using namespace std;
+
+int main(){
+	int arr[N];
+	while(true){
+		int r,k,choice,n=0,item;
+		cout<<"Access [1]"<<endl;
+		cout<<"Replace [2]"<<endl;
+		cout<<"Append [3]"<<endl;
+		cin>>choice;
+		switch(choice){
+			case 1:
+				cout<<"Enter Array Index that you want to access"<<endl;
+				cin>>k;
+				cout<<"Array ["<<k<<"] = "<<arr[k]<<endl;
+				
+			case 2:
+				cout<<"Enter Array Index You want to replace"<<endl;
+				cin>>k;
+				cout<<"Enter what Value you want to replace"<<arr[k]<<" with? "<<endl;
+				cin>>r;
+				arr[k]=r;
+				
+			case 3:
+				cout<<"Enter a value in the array: "<<endl;
+				cin>>item;
+				arr[item];
+				n++;
+		}
+	}
+}
