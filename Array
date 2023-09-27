@@ -2,32 +2,61 @@
 #define N 10
 using namespace std;
 
-int main(){
-	int arr[N];
-	while(true){
-		int r,k,choice,n=0,item;
-		cout<<"Access [1]"<<endl;
-		cout<<"Replace [2]"<<endl;
-		cout<<"Append [3]"<<endl;
-		cin>>choice;
-		switch(choice){
-			case 1:
-				cout<<"Enter Array Index that you want to access"<<endl;
-				cin>>k;
-				cout<<"Array ["<<k<<"] = "<<arr[k]<<endl;
-				
-			case 2:
-				cout<<"Enter Array Index You want to replace"<<endl;
-				cin>>k;
-				cout<<"Enter what Value you want to replace"<<arr[k]<<" with? "<<endl;
-				cin>>r;
-				arr[k]=r;
-				
-			case 3:
-				cout<<"Enter a value in the array: "<<endl;
-				cin>>item;
-				arr[item];
-				n++;
-		}
-	}
+int main() {
+    int arr[N];
+    int n = 0; // Variable to keep track of the number of elements in the array
+
+    while (true) {
+        int choice;
+        cout << "Access [1]" << endl;
+        cout << "Replace [2]" << endl;
+        cout << "Append [3]" << endl;
+        cout << "Exit [4]" << endl; 
+        cout << "\nEnter Choice: ";
+        cin>>choice;
+
+        switch (choice) {
+            case 1:
+                int k;
+                cout << "Enter Array Index that you want to access: ";
+                cin >> k;
+                if (k >= 0 && k < n) {
+                    cout << "Array[" << k << "] = " << arr[k] << endl;
+                } else {
+                    cout << "Invalid index." << endl;
+                }
+                break; 
+
+            case 2:
+                int r;
+                cout << "Enter Array Index You want to replace: ";
+                cin >> k;
+                cout << "Enter what Value you want to replace arr[" << k << "] with: ";
+                cin >> r;
+                if (k >= 0 && k < n) {
+                    arr[k] = r;
+                } else {
+                    cout << "Invalid index." << endl;
+                }
+                break; 
+
+            case 3:
+                if (n < N) {
+                    cout << "Enter a value to append to the array: ";
+                    cin >> arr[n];
+                    n++;
+                } else {
+                    cout << "Array is full. Cannot append more elements." << endl;
+                }
+                break; 
+
+            case 4:
+                return 0; 
+
+            default:
+                cout << "Invalid choice. Please select a valid option." << endl;
+        }
+    }
+
+    return 0;
 }
