@@ -4,20 +4,31 @@ using namespace std;
 
 int main() {
     int arr[N];
+    int k,item,r;
     int n = 0; // Variable to keep track of the number of elements in the array
 
     while (true) {
         int choice;
-        cout << "Access [1]" << endl;
-        cout << "Replace [2]" << endl;
-        cout << "Append [3]" << endl;
-        cout << "Exit [4]" << endl; 
+        cout << "+++++++++++++++++++++"<<endl;
+        cout << "|   Show List  [0]  |"<<endl;
+        cout << "|   Access     [1]  |" << endl;
+        cout << "|   Replace    [2]  |" << endl;
+        cout << "|   Append     [3]  |" << endl;
+        cout << "|   Insert     [4]  |"<< endl;
+        cout << "|   Delete     [5]  |"<< endl;
+        cout << "|   Exit       [7]  |" << endl; 
+        cout << "+++++++++++++++++++++"<<endl;
         cout << "\nEnter Choice: ";
         cin>>choice;
 
         switch (choice) {
+        	case 0:
+        		for (int i=0;i<n;i++){
+        			cout<<arr[i]<<", ";
+				}
+				cout <<"\b\b\n";
             case 1:
-                int k;
+                
                 cout << "Enter Array Index that you want to access: ";
                 cin >> k;
                 if (k >= 0 && k < n) {
@@ -28,7 +39,7 @@ int main() {
                 break; 
 
             case 2:
-                int r;
+                
                 cout << "Enter Array Index You want to replace: ";
                 cin >> k;
                 cout << "Enter what Value you want to replace arr[" << k << "] with: ";
@@ -49,8 +60,31 @@ int main() {
                     cout << "Array is full. Cannot append more elements." << endl;
                 }
                 break; 
+			case 4:
+			
+				cout<<"Enter what location you wanted to insert: ";
+				cin>>k;
+				if (k<N){
+					for(int i=n;i>k;i--){
+						arr[i]=arr[i-1];
+					}
+				}else{
+					cout<<"Invalid index." << endl;
+				}
 
-            case 4:
+				cout<<"Enter Value: ";
+				cin>> item;
+				arr[k]=item;
+				n++;
+			case 5:
+				cout<<"Enter what location you wanted to delete: ";
+				cin>> k;
+				for (int i = k;i<n-1;i++){
+					arr[i]=arr[i+1];
+				}
+				
+				n--;
+            case 7:
                 return 0; 
 
             default:
