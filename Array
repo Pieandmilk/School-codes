@@ -2,56 +2,64 @@
 #define N 10
 using namespace std;
 
+void displayMenu() {
+    cout << "**********************************" << endl;
+    cout << "*         Array Operations       *" << endl;
+    cout << "**********************************" << endl;
+    cout << "1. Show List" << endl;
+    cout << "2. Access an Element" << endl;
+    cout << "3. Replace an Element" << endl;
+    cout << "4. Append an Element" << endl;
+    cout << "5. Insert an Element" << endl;
+    cout << "6. Delete an Element" << endl;
+    cout << "7. Exit" << endl;
+    cout << "**********************************" << endl;
+    cout << "Enter your choice: ";
+}
+
 int main() {
-    int arr[N];
-    int k,item,r;
+    int arr[N] = {0};  // Initialize all elements to 0
+    int k, item, r;
     int n = 0; // Variable to keep track of the number of elements in the array
 
     while (true) {
         int choice;
-        cout << "+++++++++++++++++++++"<<endl;
-        cout << "|   Show List  [0]  |"<<endl;
-        cout << "|   Access     [1]  |" << endl;
-        cout << "|   Replace    [2]  |" << endl;
-        cout << "|   Append     [3]  |" << endl;
-        cout << "|   Insert     [4]  |"<< endl;
-        cout << "|   Delete     [5]  |"<< endl;
-        cout << "|   Exit       [7]  |" << endl; 
-        cout << "+++++++++++++++++++++"<<endl;
-        cout << "\nEnter Choice: ";
-        cin>>choice;
+        displayMenu();
+        cin >> choice;
 
         switch (choice) {
-        	case 0:
-        		for (int i=0;i<n;i++){
-        			cout<<arr[i]<<", ";
-				}
-				cout <<"\b\b\n";
             case 1:
-                
-                cout << "Enter Array Index that you want to access: ";
+                if (n == 0) {
+                    cout << "Array is empty." << endl;
+                } else {
+                    cout << "Array elements: ";
+                    for (int i = 0; i < n; i++) {
+                        cout << arr[i] << " ";
+                    }
+                    cout << endl;
+                }
+                break;
+            case 2:
+                cout << "Enter the index to access: ";
                 cin >> k;
                 if (k >= 0 && k < n) {
                     cout << "Array[" << k << "] = " << arr[k] << endl;
                 } else {
                     cout << "Invalid index." << endl;
                 }
-                break; 
-
-            case 2:
-                
-                cout << "Enter Array Index You want to replace: ";
+                break;
+            case 3:
+                cout << "Enter the index to replace: ";
                 cin >> k;
-                cout << "Enter what Value you want to replace arr[" << k << "] with: ";
-                cin >> r;
                 if (k >= 0 && k < n) {
+                    cout << "Enter the new value for arr[" << k << "]: ";
+                    cin >> r;
                     arr[k] = r;
                 } else {
                     cout << "Invalid index." << endl;
                 }
-                break; 
-
-            case 3:
+                break;
+            case 4:
                 if (n < N) {
                     cout << "Enter a value to append to the array: ";
                     cin >> arr[n];
@@ -59,34 +67,37 @@ int main() {
                 } else {
                     cout << "Array is full. Cannot append more elements." << endl;
                 }
-                break; 
-			case 4:
-			
-				cout<<"Enter what location you wanted to insert: ";
-				cin>>k;
-				if (k<N){
-					for(int i=n;i>k;i--){
-						arr[i]=arr[i-1];
-					}
-				}else{
-					cout<<"Invalid index." << endl;
-				}
-
-				cout<<"Enter Value: ";
-				cin>> item;
-				arr[k]=item;
-				n++;
-			case 5:
-				cout<<"Enter what location you wanted to delete: ";
-				cin>> k;
-				for (int i = k;i<n-1;i++){
-					arr[i]=arr[i+1];
-				}
-				
-				n--;
+                break;
+            case 5:
+                cout << "Enter the index to insert at: ";
+                cin >> k;
+                if (k >= 0 && k <= n && n < N) {
+                    cout << "Enter the value to insert: ";
+                    cin >> item;
+                    for (int i = n; i > k; i--) {
+                        arr[i] = arr[i - 1];
+                    }
+                    arr[k] = item;
+                    n++;
+                } else {
+                    cout << "Invalid index or array is full." << endl;
+                }
+                break;
+            case 6:
+                cout << "Enter the index to delete: ";
+                cin >> k;
+                if (k >= 0 && k < n) {
+                    for (int i = k; i < n - 1; i++) {
+                        arr[i] = arr[i + 1];
+                    }
+                    n--;
+                } else {
+                    cout << "Invalid index." << endl;
+                }
+                break;
             case 7:
-                return 0; 
-
+                cout << "Exiting the program." << endl;
+                return 0;
             default:
                 cout << "Invalid choice. Please select a valid option." << endl;
         }
