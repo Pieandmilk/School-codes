@@ -12,15 +12,19 @@ void displayMenu() {
     cout << "4. Append an Element" << endl;
     cout << "5. Insert an Element" << endl;
     cout << "6. Delete an Element" << endl;
-    cout << "7. Exit" << endl;
+    cout << "7. Search an Element" << endl;
+    cout << "8. Sort List" << endl;
+    cout << "9. Exit" << endl;
     cout << "**********************************" << endl;
     cout << "Enter your choice: ";
 }
 
 int main() {
     int arr[N] = {0};  // Initialize all elements to 0
-    int k, item, r;
-    int n = 0; // Variable to keep track of the number of elements in the array
+    int k, item, r, key, temp;
+    int n = 0; 
+    bool found= false;
+    
 
     while (true) {
         int choice;
@@ -95,7 +99,44 @@ int main() {
                     cout << "Invalid index." << endl;
                 }
                 break;
+                
             case 7:
+            	
+            	
+            	cout <<"Enter key that you want to search: ";
+            	cin >> key;
+            	for(int i=0; i<n; i++){
+            		if(key==arr[i]){
+            			cout<< "Key " << key << "is found at array["<< i <<"]"<<endl;
+            			found=true;
+            			break;
+					}
+				}
+				if (!found){
+					cout<< "Key was not found in the list." << endl;
+				}
+				break;
+				
+			case 8:
+				
+				for (int i=0;i<n-1;i++){
+					for (int j = i+1;i<n;j++){
+						if (arr[i]<arr[j]){
+							temp= arr[i];
+							arr[i]=arr[j];
+							arr[j]= temp;
+						}
+					}
+				}
+				
+				cout << "New Sorted Array elements: ";
+                    for (int i = 0; i < n; i++) {
+                        cout << arr[i] << " ";
+                    }
+                    cout << endl;
+                break;
+                
+            case 9:
                 cout << "Exiting the program." << endl;
                 return 0;
             default:
