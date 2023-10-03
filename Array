@@ -1,4 +1,5 @@
 #include <iostream>
+
 #define N 10
 using namespace std;
 
@@ -32,7 +33,11 @@ int main() {
         cin >> choice;
 
         switch (choice) {
+        	
             case 1:
+            	
+            	system("cls");
+            	
                 if (n == 0) {
                     cout << "Array is empty." << endl;
                 } else {
@@ -44,6 +49,9 @@ int main() {
                 }
                 break;
             case 2:
+            	
+            	system("cls");
+            	
                 cout << "Enter the index to access: ";
                 cin >> k;
                 if (k >= 0 && k < n) {
@@ -53,6 +61,9 @@ int main() {
                 }
                 break;
             case 3:
+            	
+            	system("cls");
+            	
                 cout << "Enter the index to replace: ";
                 cin >> k;
                 if (k >= 0 && k < n) {
@@ -64,6 +75,9 @@ int main() {
                 }
                 break;
             case 4:
+            	
+            	system("cls");
+            	
                 if (n < N) {
                     cout << "Enter a value to append to the array: ";
                     cin >> arr[n];
@@ -73,6 +87,9 @@ int main() {
                 }
                 break;
             case 5:
+            	
+            	system("cls");
+            	
                 cout << "Enter the index to insert at: ";
                 cin >> k;
                 if (k >= 0 && k <= n && n < N) {
@@ -88,6 +105,9 @@ int main() {
                 }
                 break;
             case 6:
+            	
+            	system("cls");
+            	
                 cout << "Enter the index to delete: ";
                 cin >> k;
                 if (k >= 0 && k < n) {
@@ -102,6 +122,7 @@ int main() {
                 
             case 7:
             	
+            	system("cls");
             	
             	cout <<"Enter key that you want to search: ";
             	cin >> key;
@@ -119,9 +140,13 @@ int main() {
 				
 			case 8:
 				
-				for (int i=0;i<n-1;i++){
-					for (int j = i+1;i<n;j++){
-						if (arr[i]<arr[j]){
+				system("cls");
+				
+				for (int i=0; i<n-1;i++){
+					
+					for (int j = i+1;j < n;j++){
+						
+						if (arr[i]>arr[j]){
 							temp= arr[i];
 							arr[i]=arr[j];
 							arr[j]= temp;
@@ -137,6 +162,7 @@ int main() {
                 break;
                 
             case 9:
+            	system("cls");
                 cout << "Exiting the program." << endl;
                 return 0;
             default:
