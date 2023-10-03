@@ -1,9 +1,10 @@
 #include <iostream>
-
+#include <windows.h>
 #define N 10
 using namespace std;
 
 void displayMenu() {
+	system("cls");
     cout << "**********************************" << endl;
     cout << "*         Array Operations       *" << endl;
     cout << "**********************************" << endl;
@@ -20,6 +21,19 @@ void displayMenu() {
     cout << "Enter your choice: ";
 }
 
+void loadingScreen() {
+	system("cls");
+   cout<< "Loading";
+   for (int i =0; i<3;i++){
+   	cout<<".";
+   	Sleep(1000);
+   }
+}
+void pressEnterToContinue() {
+    cout << "Press Enter to continue...";
+    cin.ignore();
+    cin.get();
+}
 int main() {
     int arr[N] = {0};  // Initialize all elements to 0
     int k, item, r, key, temp;
@@ -31,7 +45,7 @@ int main() {
         int choice;
         displayMenu();
         cin >> choice;
-
+		loadingScreen();
         switch (choice) {
         	
             case 1:
@@ -47,6 +61,7 @@ int main() {
                     }
                     cout << endl;
                 }
+                pressEnterToContinue();
                 break;
             case 2:
             	
@@ -59,6 +74,7 @@ int main() {
                 } else {
                     cout << "Invalid index." << endl;
                 }
+                pressEnterToContinue();
                 break;
             case 3:
             	
@@ -70,9 +86,11 @@ int main() {
                     cout << "Enter the new value for arr[" << k << "]: ";
                     cin >> r;
                     arr[k] = r;
+                    cout<< "Successfully replaced with "<< r<<endl;
                 } else {
                     cout << "Invalid index." << endl;
                 }
+                pressEnterToContinue();
                 break;
             case 4:
             	
@@ -81,10 +99,13 @@ int main() {
                 if (n < N) {
                     cout << "Enter a value to append to the array: ";
                     cin >> arr[n];
+                    cout<< "Successfully Appended"<<endl;
                     n++;
+                    
                 } else {
                     cout << "Array is full. Cannot append more elements." << endl;
                 }
+                pressEnterToContinue();
                 break;
             case 5:
             	
@@ -99,10 +120,12 @@ int main() {
                         arr[i] = arr[i - 1];
                     }
                     arr[k] = item;
+                    cout<< "Successfully inserted with "<< item<<endl;
                     n++;
                 } else {
                     cout << "Invalid index or array is full." << endl;
                 }
+                pressEnterToContinue();
                 break;
             case 6:
             	
@@ -114,10 +137,12 @@ int main() {
                     for (int i = k; i < n - 1; i++) {
                         arr[i] = arr[i + 1];
                     }
+                    cout<< "Successfully Deleted!"<<endl;
                     n--;
                 } else {
                     cout << "Invalid index." << endl;
                 }
+                pressEnterToContinue();
                 break;
                 
             case 7:
@@ -136,6 +161,7 @@ int main() {
 				if (!found){
 					cout<< "Key was not found in the list." << endl;
 				}
+				pressEnterToContinue();
 				break;
 				
 			case 8:
@@ -159,6 +185,7 @@ int main() {
                         cout << arr[i] << " ";
                     }
                     cout << endl;
+                pressEnterToContinue();
                 break;
                 
             case 9:
