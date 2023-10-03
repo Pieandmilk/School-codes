@@ -6,17 +6,20 @@ using namespace std;
 void displayMenu() {
 	system("cls");
     cout << "**********************************" << endl;
-    cout << "*         Array Operations       *" << endl;
+    cout << "*             ELEGADO            *" << endl;
+    cout << "*                                *" << endl;
+    cout << "*      ---Array Operations---    *" << endl;
+    cout << "*                                *" << endl;
     cout << "**********************************" << endl;
-    cout << "1. Show List" << endl;
-    cout << "2. Access an Element" << endl;
-    cout << "3. Replace an Element" << endl;
-    cout << "4. Append an Element" << endl;
-    cout << "5. Insert an Element" << endl;
-    cout << "6. Delete an Element" << endl;
-    cout << "7. Search an Element" << endl;
-    cout << "8. Sort List" << endl;
-    cout << "9. Exit" << endl;
+    cout << "* 1. Show List                   *" << endl;
+    cout << "* 2. Access an Element           *" << endl;
+    cout << "* 3. Replace an Element          *" << endl;
+    cout << "* 4. Append an Element           *" << endl;
+    cout << "* 5. Insert an Element           *" << endl;
+    cout << "* 6. Delete an Element           *" << endl;
+    cout << "* 7. Search an Element           *" << endl;
+    cout << "* 8. Sort List                   *" << endl;
+    cout << "* 9. Exit                        *" << endl;
     cout << "**********************************" << endl;
     cout << "Enter your choice: ";
 }
@@ -26,7 +29,7 @@ void loadingScreen() {
    cout<< "Loading";
    for (int i =0; i<3;i++){
    	cout<<".";
-   	Sleep(1000);
+   	Sleep(400);
    }
 }
 void pressEnterToContinue() {
@@ -45,11 +48,11 @@ int main() {
         int choice;
         displayMenu();
         cin >> choice;
-		loadingScreen();
+		
         switch (choice) {
         	
             case 1:
-            	
+            	loadingScreen();
             	system("cls");
             	
                 if (n == 0) {
@@ -64,7 +67,7 @@ int main() {
                 pressEnterToContinue();
                 break;
             case 2:
-            	
+            	loadingScreen();
             	system("cls");
             	
                 cout << "Enter the index to access: ";
@@ -77,7 +80,7 @@ int main() {
                 pressEnterToContinue();
                 break;
             case 3:
-            	
+            	loadingScreen();
             	system("cls");
             	
                 cout << "Enter the index to replace: ";
@@ -93,7 +96,7 @@ int main() {
                 pressEnterToContinue();
                 break;
             case 4:
-            	
+            	loadingScreen();
             	system("cls");
             	
                 if (n < N) {
@@ -108,7 +111,7 @@ int main() {
                 pressEnterToContinue();
                 break;
             case 5:
-            	
+            	loadingScreen();
             	system("cls");
             	
                 cout << "Enter the index to insert at: ";
@@ -128,7 +131,7 @@ int main() {
                 pressEnterToContinue();
                 break;
             case 6:
-            	
+            	loadingScreen();
             	system("cls");
             	
                 cout << "Enter the index to delete: ";
@@ -146,7 +149,7 @@ int main() {
                 break;
                 
             case 7:
-            	
+            	loadingScreen();
             	system("cls");
             	
             	cout <<"Enter key that you want to search: ";
@@ -165,7 +168,7 @@ int main() {
 				break;
 				
 			case 8:
-				
+				loadingScreen();
 				system("cls");
 				
 				for (int i=0; i<n-1;i++){
@@ -190,7 +193,11 @@ int main() {
                 
             case 9:
             	system("cls");
-                cout << "Exiting the program." << endl;
+                cout << "Exiting the program";
+                for (int i =0; i<3;i++){
+					cout<<".";
+					Sleep(1000);
+				}
                 return 0;
             default:
                 cout << "Invalid choice. Please select a valid option." << endl;
