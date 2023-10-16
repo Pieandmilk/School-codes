@@ -1,0 +1,65 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Function to evaluate a postfix expression using an array as a stack
+double evaluatePostfixExpression(const string& expression) {
+    double stack[100];  // Assuming a maximum of 100 elements in the stack
+    int top = -1;       // Stack top pointer
+
+    istringstream iss(expression);
+    string token;
+
+    while (iss >> token) {
+        if (isdigit(token[0]) || (token[0] == '-' && token.length() > 1)) {
+            // Push numbers onto the stack
+            stack[++top] = stod(token);
+        } else {
+            // Operator encountered
+            if (top < 1) {
+                cerr << "Invalid expression." << endl;
+                return 0.0;
+            }
+            
+            double operand2 = stack[top--];
+            double operand1 = stack[top--];
+
+            if (token == "+") {
+                stack[++top] = operand1 + operand2;
+            } else if (token == "-") {
+                stack[++top] = operand1 - operand2;
+            } else if (token == "*") {
+                stack[++top] = operand1 * operand2;
+            } else if (token == "/") {
+                if (operand2 != 0) {
+                    stack[++top] = operand1 / operand2;
+                } else {
+                    cerr << "Division by zero is not allowed." << endl;
+                    return 0.0;
+                }
+            } else {
+                cerr << "Invalid operator: " << token << endl;
+                return 0.0;
+            }
+        }
+    }
+
+    if (top == 0) {
+        return stack[top];
+    } else {
+        cerr << "Invalid expression." << endl;
+        return 0.0;
+    }
+}
+
+int main() {
+    string expression;
+    cout << "Enter a postfix expression: ";
+    getline(cin, expression);
+
+    double result = evaluatePostfixExpression(expression);
+
+    cout << "Result: " << result << endl;
+
+    return 0;
+}
