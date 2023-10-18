@@ -1,64 +1,95 @@
 #include <iostream>
+#include <stack>
 #include <string>
+#include <cctype>
+#include <sstream> 
+
 using namespace std;
 
-// Function to evaluate a postfix expression using an array as a stack
-double evaluatePostfixExpression(const string& expression) {
-    double stack[100];  // Assuming a maximum of 100 elements in the stack
-    int top = -1;       // Stack top pointer
+int precedence(char op) {
+    if (op == '+' || op == '-') return 1;
+    if (op == '*' || op == '/') return 2;
+    return 0;
+}
 
-    istringstream iss(expression);
-    string token;
+string infixToPostfix(const string& infix) {
+    string postfix;
+    stack<char> operatorStack;
 
-    while (iss >> token) {
-        if (isdigit(token[0]) || (token[0] == '-' && token.length() > 1)) {
-            // Push numbers onto the stack
-            stack[++top] = stod(token);
-        } else {
-            // Operator encountered
-            if (top < 1) {
-                cerr << "Invalid expression." << endl;
-                return 0.0;
+    for (size_t i = 0; i < infix.length(); i++) {
+        char c = infix[i];
+
+        if (isdigit(c)) {
+            while (i < infix.length() && isdigit(infix[i])) {
+                postfix += infix[i];
+                i++;
             }
-            
-            double operand2 = stack[top--];
-            double operand1 = stack[top--];
-
-            if (token == "+") {
-                stack[++top] = operand1 + operand2;
-            } else if (token == "-") {
-                stack[++top] = operand1 - operand2;
-            } else if (token == "*") {
-                stack[++top] = operand1 * operand2;
-            } else if (token == "/") {
-                if (operand2 != 0) {
-                    stack[++top] = operand1 / operand2;
-                } else {
-                    cerr << "Division by zero is not allowed." << endl;
-                    return 0.0;
-                }
-            } else {
-                cerr << "Invalid operator: " << token << endl;
-                return 0.0;
+            i--;
+            postfix += ' ';
+        }
+        else if (c == '(') {
+            operatorStack.push(c);
+        }
+        else if (c == ')') {
+            while (!operatorStack.empty() && operatorStack.top() != '(') {
+                postfix += operatorStack.top();
+                operatorStack.pop();
             }
+            operatorStack.pop();
+        }
+        else {
+            while (!operatorStack.empty() && precedence(c) <= precedence(operatorStack.top())) {
+                postfix += operatorStack.top();
+                operatorStack.pop();
+            }
+            operatorStack.push(c);
         }
     }
 
-    if (top == 0) {
-        return stack[top];
-    } else {
-        cerr << "Invalid expression." << endl;
-        return 0.0;
+    while (!operatorStack.empty()) {
+        postfix += operatorStack.top();
+        operatorStack.pop();
     }
+
+    return postfix;
+}
+
+int evaluatePostfix(const string& postfix) {
+    stack<int> operandStack;
+    istringstream ss(postfix); // Use istringstream instead of stringstream
+
+    while (!ss.eof()) {
+        string token;
+        ss >> token;
+
+        if (isdigit(token[0])) {
+            operandStack.push(stoi(token));
+        }
+        else if (token.length() == 1 && (token[0] == '+' || token[0] == '-' || token[0] == '*' || token[0] == '/')) {
+            int operand2 = operandStack.top();
+            operandStack.pop();
+            int operand1 = operandStack.top();
+            operandStack.pop();
+
+            if (token[0] == '+') operandStack.push(operand1 + operand2);
+            else if (token[0] == '-') operandStack.push(operand1 - operand2);
+            else if (token[0] == '*') operandStack.push(operand1 * operand2);
+            else if (token[0] == '/') operandStack.push(operand1 / operand2);
+        }
+    }
+
+    return operandStack.top();
 }
 
 int main() {
-    string expression;
-    cout << "Enter a postfix expression: ";
-    getline(cin, expression);
+    string infixExpression;
+    cout << "Enter an infix expression: ";
+    getline(cin, infixExpression);
 
-    double result = evaluatePostfixExpression(expression);
+    string postfixExpression = infixToPostfix(infixExpression);
+    cout << "Postfix expression: " << postfixExpression << endl;
 
+    int result = evaluatePostfix(postfixExpression);
     cout << "Result: " << result << endl;
 
     return 0;
